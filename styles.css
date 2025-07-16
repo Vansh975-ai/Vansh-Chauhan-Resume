@@ -144,11 +144,14 @@ body {
   padding: 0 2rem;
   margin-top: 80px;
   gap: 3rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-content {
   flex: 1;
   max-width: 600px;
+  z-index: 2;
 }
 
 .hero-title {
@@ -157,6 +160,7 @@ body {
   font-weight: bold;
   margin-bottom: 1rem;
   line-height: 1.1;
+  min-height: 4.4rem;
 }
 
 .hero-subtitle {
@@ -177,6 +181,7 @@ body {
   font-size: 1.1rem;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+  margin-bottom: 2rem;
 }
 
 .cta-button:hover {
@@ -188,6 +193,7 @@ body {
 .hero-image {
   flex: 1;
   text-align: center;
+  position: relative;
 }
 
 .hero-image img {
@@ -195,6 +201,58 @@ body {
   height: auto;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 1;
+}
+
+/* Social Icons below Contact Us button */
+.hero-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.social-icon.instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: white;
+}
+
+.social-icon.linkedin {
+  background-color: #0077b5;
+  color: white;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Landscape Image Section */
+.landscape-section {
+  background-color: var(--secondary-bg);
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.landscape-image {
+  max-width: 100%;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* Section Styles */
@@ -571,6 +629,33 @@ section {
   }
 }
 
+/* Typing Animation */
+.typing-text {
+  overflow: hidden;
+  border-right: 3px solid #1e3a8a;
+  white-space: nowrap;
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #1e3a8a;
+  }
+}
+
 /* Enhanced text floating effect for page load */
 .page-loaded .floating-text,
 .page-loaded .floating-text-delay-1,
@@ -605,6 +690,36 @@ section {
   transform: translateY(0);
 }
 
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #ffffff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  background-color: #128c7e;
+  transform: scale(1.1);
+}
+
+.whatsapp-float:before {
+  content: "💬";
+  font-size: 24px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .nav-links {
@@ -619,14 +734,33 @@ section {
     flex-direction: column;
     text-align: center;
     padding: 2rem 1rem;
+    min-height: calc(100vh - 80px);
+    justify-content: center;
+  }
+
+  .hero-content {
+    order: 1;
+    margin-bottom: 2rem;
+  }
+
+  .hero-image {
+    order: 2;
+    max-width: 100%;
   }
 
   .hero-title {
     font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    min-height: 3rem;
   }
 
   .hero-subtitle {
     font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-social {
+    justify-content: center;
   }
 
   .contact-content {
@@ -661,11 +795,16 @@ section {
   section {
     padding: 3rem 0;
   }
+
+  .landscape-image {
+    height: 200px;
+  }
 }
 
 @media (max-width: 480px) {
   .hero-title {
     font-size: 2rem;
+    min-height: 2.5rem;
   }
 
   .section-title {
@@ -675,34 +814,13 @@ section {
   .stat-number {
     font-size: 2.5rem;
   }
-}
 
-.whatsapp-float {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 40px;
-  right: 40px;
-  background-color: #25d366;
-  color: #ffffff;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 30px;
-  box-shadow: 2px 2px 3px #999;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
+  .hero {
+    padding: 1rem;
+    margin-top: 100px;
+  }
 
-.whatsapp-float:hover {
-  background-color: #128c7e;
-  transform: scale(1.1);
-}
-
-.whatsapp-float:before {
-  content: "💬";
-  font-size: 24px;
+  .logo-image {
+    height: 60px;
+  }
 }
