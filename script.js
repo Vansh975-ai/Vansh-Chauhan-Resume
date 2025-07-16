@@ -4,7 +4,35 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     document.body.classList.add("page-loaded")
   }, 100)
+
+  // Start typing animation after page loads
+  setTimeout(() => {
+    startTypingAnimation()
+  }, 500)
 })
+
+// Typing Animation Function
+function startTypingAnimation() {
+  const titleElement = document.getElementById("typingTitle")
+  const text = "Your Brand, Our Mission."
+  titleElement.textContent = ""
+  titleElement.classList.add("typing-text")
+
+  let i = 0
+  const typeWriter = () => {
+    if (i < text.length) {
+      titleElement.textContent += text.charAt(i)
+      i++
+      setTimeout(typeWriter, 100)
+    } else {
+      // Remove cursor after typing is complete
+      setTimeout(() => {
+        titleElement.style.borderRight = "none"
+      }, 1000)
+    }
+  }
+  typeWriter()
+}
 
 // Smooth Scrolling for Navigation Links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -142,14 +170,8 @@ window.addEventListener("scroll", () => {
   }
 })
 
-// Parallax Effect for Hero Section
-window.addEventListener("scroll", () => {
-  const scrolled = window.pageYOffset
-  const heroImage = document.querySelector(".hero-image img")
-  if (heroImage) {
-    heroImage.style.transform = `translateY(${scrolled * 0.5}px)`
-  }
-})
+// Remove parallax effect to fix hero image stability
+// The hero image is now fixed in position and won't move during scroll
 
 // Enhanced floating text animation on scroll
 const floatingTextObserver = new IntersectionObserver(
